@@ -1,4 +1,5 @@
 const args = require('../services/args')
+const os = require('os')
 
 class MainController {
   index(req, res) {
@@ -14,7 +15,8 @@ class MainController {
       pid: process.pid,
       version: process.version,
       projectPath: process.cwd(),
-      rss: JSON.stringify(process.memoryUsage(), null, 2)
+      rss: JSON.stringify(process.memoryUsage(), null, 2),
+      cpus: os.cpus().length
     }
     res.render('info', { info })
   }
