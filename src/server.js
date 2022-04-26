@@ -57,6 +57,12 @@ app.use(flash((passport)))
 app.use(passport.initialize())
 app.use(passport.session())
 
+// Kill a process
+app.get('/kill', (req, res) => {
+  res.send(`Process #${process.pid} killed`)
+  return process.exit()
+})
+
 // Fork
 app.get('/api/randoms', (req, res) => {
   const quantity = req.query.cant || 100000000
